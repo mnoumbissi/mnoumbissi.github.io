@@ -1,7 +1,7 @@
-// Databases
+// bd
 const LISTE_ETUDIANTS = [];
 
-// Objets
+// Obj
 function Matiere(libelle = '', note = 0) {
     this.nom = libelle;
     this.note = note;
@@ -19,7 +19,7 @@ function Etudiant(nom = '', prenom = '', sexe = '', dateNais = '', lieuNais, par
     this.taille = taille;
 }
 
-// Add action to matiere add button
+//  bouton ajout des matieres
 var tempMatieres = [];
 let ajoutMatiere = document.getElementById('ajoutM');
 ajoutMatiere.addEventListener('click', () => {
@@ -45,12 +45,11 @@ ajoutMatiere.addEventListener('click', () => {
     document.getElementById('note').value = '';
 });
 
-// Add action to student save button
+// bouton enregistrer
 let ButtonEnreg = document.getElementById('enreg');
 ButtonEnreg.addEventListener('click', () => onSaveButtonClick(tempMatieres));
 
 function onSaveButtonClick(matiere) {
-    // Get textbox values
     let nom = document.getElementById('nom').value;
     let prenom = document.getElementById('prenom').value;
     let dateNais = document.getElementById('dtenais').value;
@@ -74,14 +73,11 @@ function enregEtudiant(student = new Etudiant()) {
 
 function AjoutEtudiant(currentStudent = new Etudiant()) {
 
-    // Get table Id
     let myTable = document.getElementById('info_tab');
 
-    // I create the new row
     let tr = document.createElement('tr');
     tr.setAttribute('pour', 'vrai');
 
-    // I create the cols
     let tdNo = document.createElement('td');
     tdNo.innerHTML = LISTE_ETUDIANTS.length;
     let tdNom = document.createElement('td');
@@ -96,7 +92,6 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
     tdParcours.innerHTML = currentStudent.parcours;
     let tdAction = document.createElement('td');
 
-    // Actions buttons
     let btnEdit = document.createElement('a');
     btnEdit.setAttribute('class', 'btn btn-warning');
     btnEdit.innerHTML = '+ ';
@@ -111,7 +106,6 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
         LISTE_ETUDIANTS.splice(studentId, 1);
         myTable.removeChild(tr);
 
-        // Clear detailled infos
         document.getElementById('lnom').innerHTML = '';
         document.getElementById('lprenom').innerHTML = '';
         document.getElementById('ldate').innerHTML = '';
@@ -121,7 +115,6 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
         console.log('Apres', LISTE_ETUDIANTS);
     });
 
-    // Add child to tags
     tdAction.appendChild(btnEdit);
     tdAction.appendChild(btnDele);
 
@@ -133,13 +126,11 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
     tr.appendChild(tdParcours);
     tr.appendChild(tdAction);
 
-    // Action when student row is selected
     tr.addEventListener(
         'click',
         () => showStudentDetailledInfos(parseInt(tdNo.innerHTML) - 1)
     );
 
-    // Add my new row to the table
     myTable.appendChild(tr);
 }
 
@@ -147,7 +138,7 @@ function showStudentDetailledInfos(studentId) {
     let id = studentId;
     let student = LISTE_ETUDIANTS[id];
 
-    // Person
+    // Persone
     document.getElementById('lnom').innerHTML = '<b>Nom & prenom : </b>' + student.nom + ' ' + student.prenom;
     document.getElementById('lprenom').innerHTML = '<b>Date et lieu de naissance : </b><br />' + student.dateNais + ' <b>a</b> ' + student.lieuNais;
     document.getElementById('ldate').innerHTML = '<b>Sexe</b> : ' + student.sexe;
