@@ -100,7 +100,6 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
     btnDele.setAttribute('class', 'btn btn-danger text-dark mx-2');
     btnDele.innerHTML = '-';
     btnDele.addEventListener('click', () => {
-        console.log('Avant', LISTE_ETUDIANTS);
 
         studentId = parseInt(tdNo.innerHTML) - 1;
         LISTE_ETUDIANTS.splice(studentId, 1);
@@ -112,7 +111,6 @@ function AjoutEtudiant(currentStudent = new Etudiant()) {
         document.getElementById('lparcours').innerHTML = '';
         document.getElementById('tab_mynote').innerHTML = '';
 
-        console.log('Apres', LISTE_ETUDIANTS);
     });
 
     tdAction.appendChild(btnEdit);
@@ -172,8 +170,7 @@ function clearFormData() {
     document.getElementById('dtenais').value = '';
     document.getElementById('lnais').value = '';
     document.getElementById('parcours').value = '';
-
     document.getElementById('matiere').value = '';
     document.getElementById('note').value = '';
-    document.getElementById('tab_note').innerHTML = '';
+    document.getElementById('Tnote').innerHTML = '';
 }
